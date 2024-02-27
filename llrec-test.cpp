@@ -67,9 +67,17 @@ void dealloc(Node* head)
 //   function object struct declarations
 // -----------------------------------------------
 
+struct isEven{
+    bool operator()(int val){
+        return (val % 2 == 0);
+    }
+};
 
-
-
+struct isDivThree{
+    bool operator()(int val){
+        return (val % 3 == 0);
+    }
+};
 
 int main(int argc, char* argv[])
 {
@@ -87,9 +95,34 @@ int main(int argc, char* argv[])
 
     // Test out your linked list code
 
-
-
     
+    // //testing for pivot
+    // Node* smaller = nullptr;
+    // Node* larger = nullptr;
+    // llpivot(head, smaller, larger, 11);
+    // cout << "Pivoted list: " << endl;
+    // cout << "Head: ";
+    // print(head);
+    // cout << "Smaller: ";
+    // print(smaller);
+    // cout << "Larger: ";
+    // print(larger);
+
+    // dealloc(smaller);
+    // dealloc(larger);
+
+
+    //testing for llfilter and isEven functor
+    // head = llfilter(head, isEven());
+    // cout << "Filtered even: ";
+    // print(head);
+
+    //testing isDivThree functor
+    head = llfilter(head, isDivThree());
+    cout << "Filtered Divisible by 3: ";
+    print(head);
+
+    dealloc(head);
     return 0;
 
 }
