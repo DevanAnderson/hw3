@@ -86,9 +86,9 @@ void Heap<T, PComparator>::heapify(int idx){
 
   //get the best child out of all the other children
   for(int i = 2; i <= m_; ++i){
-    int nextChild = idx * m_ + i ;
+    int nextChild = idx * m_ + i;
     //check if ith child exists
-    if(idx * m_ + i < data_.size()){
+    if(nextChild < data_.size()){
       if(c_(data_.at(nextChild), data_.at(bestChild))){
         bestChild = nextChild;
       }
@@ -102,7 +102,7 @@ void Heap<T, PComparator>::heapify(int idx){
   //
   if(c_(data_.at(bestChild), data_.at(idx))){
     std::swap(data_.at(bestChild), data_.at(idx));
-    Heap<T,PComparator>::heapify(idx);
+    Heap<T,PComparator>::heapify(bestChild);
   }
 }
 
@@ -128,7 +128,7 @@ T const & Heap<T,PComparator>::top() const
     // ================================
     // throw the appropriate exception
     // ================================
-    throw std::underflow_error("empty heap");
+    throw std::underflow_error("top() on an empty heap");
 
   }
   // If we get here we know the heap has at least 1 item
@@ -146,7 +146,7 @@ void Heap<T,PComparator>::pop()
     // ================================
     // throw the appropriate exception
     // ================================
-    throw std::underflow_error("empty heap");
+    throw std::underflow_error("pop() on an empty heap");
   }
 
   data_.at(0) = data_.at(data_.size() - 1);

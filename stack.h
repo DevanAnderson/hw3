@@ -9,30 +9,34 @@ template <typename T>
 class Stack : private std::vector<T>
 {
 public:
-    Stack();
-    ~Stack();
+    Stack(){
+
+    }
+    ~Stack(){
+
+    }
     bool empty() const{
-        return vector::empty();
+        return std::vector<T>::empty();
     }
     size_t size() const{
-        return vector::size();
+        return std::vector<T>::size();
     }
     void push(const T& item){
-        vector::push_back(item);
+        std::vector<T>::push_back(item);
     }
     void pop()  // throws std::underflow_error if empty
     {
-        if(vector::empty()){
+        if(std::vector<T>::empty()){
             throw std::underflow_error("stack is empty");
         }
-        vectpr::pop_back();
+        std::vector<T>::pop_back();
     }
-    const T& top() const; // throws std::underflow_error if empty
+    const T& top() const // throws std::underflow_error if empty
     {
-        if(vector::empty()){
+        if(std::vector<T>::empty()){
             throw std::underflow_error("stack is empty");
         }
-        return vector::at(0);
+        return std::vector<T>::at(std::vector<T>::size() - 1);
     }
     // Add other members only if necessary
 };
